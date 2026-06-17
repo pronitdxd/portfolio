@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pronit Das — Portfolio</title>
+  <meta name="description" content="Pronit Das — Building Secure AI Systems. Cybersecurity & AI Engineer." />
+
+  <!-- Fonts: Fraunces (display serif) + Inter (body) + JetBrains Mono (labels) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#0A0A0B',
+            panel: '#141416',
+            line: '#2A2A2D',
+            paper: '#E8E6E1',
+            mute: '#8A8A8F',
+            signal: '#FF6200',
+            'signal-dim': '#B8480E',
+          },
+          fontFamily: {
+            display: ['Fraunces', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<!-- ===================== INTRO SCREEN ===================== -->
+  <div id="intro-screen" style="position:fixed;inset:0;z-index:9999;background:rgba(10,10,11,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;">
+
+    <!-- Robot -->
+    <div style="width:420px;height:420px;flex-shrink:0;display:none;" class="md:block">
+      <spline-viewer
+        url="https://prod.spline.design/pIX8GFdgHyQ3U-8k/scene.splinecode"
+        style="width:100vw;height:100vh;position:fixed;top:0;left:0;"
+      ></spline-viewer>
+    <div style="position:absolute;bottom:0;right:0;width:150px;height:50px;background:rgba(10,10,11,0.85);backdrop-filter:blur(8px);z-index:99999;pointer-events:none;"></div>
+    </div>
+
+    <!-- Welcome text -->
+    <div id="intro-text" style="text-align:center;opacity:0;transform:translateY(20px);transition:opacity 0.8s ease,transform 0.8s ease;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;letter-spacing:0.3em;text-transform:uppercase;color:#FF6200;margin-bottom:12px;">
+       
+      </p>
+      <h1 style="font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:500;color:#E8E6E1;line-height:1.1;margin-bottom:8px;">
+        Welcome to my Portfolio
+      </h1>
+      <p style="font-family:'Inter',sans-serif;font-size:1rem;color:#8A8A8F;margin-bottom:32px;">
+        Pronit Das — AI-ML & Cybersecurity Engineer
+      </p>
+      <button
+        id="intro-btn"
+        style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.2em;background:#FF6200;color:#0A0A0B;border:none;padding:16px 36px;border-radius:9999px;cursor:pointer;transition:background 0.3s,transform 0.2s;"
+        onmouseover="this.style.background='#E8E6E1'"
+        onmouseout="this.style.background='#FF6200'"
+        onclick="dismissIntro()"
+      >
+        Let's Get Started →
+      </button>
+    </div>
+  </div>
+
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.87/build/spline-viewer.js"></script>
+
+  <script>
+    // Show welcome text after robot loads (2s delay feels cinematic)
+    setTimeout(() => {
+      const text = document.getElementById('intro-text');
+      if (text) {
+        text.style.opacity = '1';
+        text.style.transform = 'translateY(0)';
+      }
+    }, 2000);
+
+    function dismissIntro() {
+      const intro = document.getElementById('intro-screen');
+      intro.style.transition = 'opacity 0.8s ease';
+      intro.style.opacity = '0';
+      setTimeout(() => {
+        intro.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }, 800);
+    }
+
+    // Prevent scrolling while intro is showing
+    document.body.style.overflow = 'hidden';
+document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      const viewer = document.querySelector('spline-viewer');
+      if (viewer && viewer.shadowRoot) {
+        const logo = viewer.shadowRoot.querySelector('#logo');
+        if (logo) logo.style.display = 'none';
+      }
+    }, 3000);
+  </script>
+<body class="bg-ink text-paper font-sans antialiased">
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero" class="relative h-screen w-full overflow-hidden flex items-end">
+
+    <!-- Background photo -->
+    <div class="absolute inset-0">
+      <img
+        src="assets/photo.png"
+        alt="Pronit Das"
+        class="w-full h-full object-cover object-[center_25%] scale-105"
+      />
+      <!-- Gradient overlays for cinematic depth + text legibility -->
+      <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/20"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-ink/40"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, transparent 40%, rgba(10,10,11,0.6) 100%);"></div>
+    </div>
+
+    <!-- Hero content -->
+    <div class="relative z-10 w-full px-6 md:px-12 lg:px-20 pb-16 md:pb-20">
+
+      <!-- Eyebrow label -->
+      <p class="font-mono text-signal text-xs md:text-sm tracking-[0.3em] uppercase mb-4 md:mb-6 reveal">
+        Kolkata, West Bengal | Dharwad, Karnataka
+      </p>
+
+      <!-- Big name -->
+      <h1 class="font-display font-medium leading-[0.95] tracking-tight text-[15vw] md:text-[10vw] lg:text-[8vw] reveal">
+        Pronit Das
+      </h1>
+
+      <!-- Tagline -->
+      <p class="mt-6 md:mt-8 max-w-xl text-base md:text-lg text-mute font-light leading-relaxed reveal">
+        <span class="text-paper">AI-ML &amp; Cybersec Engineer, FullStack Webdev</span>
+        crafting interpretable intelligence and resilient systems and platforms.
+      </p>
+
+      <!-- CTAs -->
+      <div class="mt-8 md:mt-10 flex flex-wrap gap-4 reveal">
+        <a href="#projects"
+           class="group inline-flex items-center gap-3 bg-signal text-ink font-mono text-sm uppercase tracking-wider px-7 py-4 rounded-full transition-all duration-300 hover:bg-paper hover:gap-5">
+          View Projects
+          <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </a>
+        <a href="#contact"
+           class="inline-flex items-center gap-3 border border-line text-paper font-mono text-sm uppercase tracking-wider px-7 py-4 rounded-full transition-all duration-300 hover:border-signal hover:text-signal">
+          Contact
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 right-6 md:right-12 z-10 hidden md:flex flex-col items-center gap-3 text-mute font-mono text-xs tracking-widest uppercase">
+      <span style="writing-mode: vertical-rl;">Scroll</span>
+      <span class="w-px h-12 bg-line relative overflow-hidden">
+        <span class="absolute top-0 left-0 w-full h-1/2 bg-signal animate-bounce"></span>
+      </span>
+    </div>
+  </section>
+<!-- ===================== EXPERIENCE ===================== -->
+  <section id="experience" class="relative bg-ink px-6 md:px-12 lg:px-20 py-24 md:py-36 border-t border-line">
+
+    <div class="reveal mb-8 md:mb-12">
+      <h2 class="font-display font-medium leading-[1.05] tracking-tight text-[10vw] md:text-[5.5vw] lg:text-[4.5vw] max-w-4xl">
+        Where I've Worked
+      </h2>
+    </div>
+
+    <div class="reveal group relative border border-line rounded-2xl p-6 md:p-10 transition-all duration-500 hover:border-signal hover:bg-panel">
+<!-- Peeking avatar that pops up on hover -->
+      <div class="absolute -top-14 left-8 md:left-12 z-20 flex flex-col items-center opacity-0 -translate-y-4 scale-75 transition-all duration-500 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 pointer-events-none">
+        <img src="assets/avatar-peek.png" alt="" class="w-14 h-14 md:w-16 md:h-16 object-contain" />
+        <div class="mt-1 font-mono text-[7px] md:text-[9px] uppercase tracking-wider text-paper bg-ink border border-signal/40 rounded-full px-3 py-1 whitespace-nowrap">
+          Honestly, it was a great experience to work here!
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+        <div>
+          <h3 class="font-display text-2xl md:text-4xl font-medium transition-colors duration-300 group-hover:text-signal">
+            Machine Learning Intern
+          </h3>
+          <p class="font-mono text-sm md:text-base text-mute mt-2 uppercase tracking-wider">
+            NIT Rourkela
+          </p>
+        </div>
+        <span class="font-mono text-xs md:text-sm text-signal uppercase tracking-[0.2em] border border-signal/40 rounded-full px-4 py-2 w-fit">
+          June – July 2026
+        </span>
+      </div>
+
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <li class="flex gap-3 text-mute text-sm md:text-base leading-relaxed transition-colors duration-300 group-hover:text-paper">
+          <span class="text-signal font-mono mt-1">→</span>
+          Conducted a literature review on AI-driven Metal-Organic Framework (MOF) discovery, evaluating GNNs, transformers, and generative models.
+        </li>
+        <li class="flex gap-3 text-mute text-sm md:text-base leading-relaxed transition-colors duration-300 group-hover:text-paper">
+          <span class="text-signal font-mono mt-1">→</span>
+          Built an interpretable neural network achieving <span class="text-paper font-medium">R² ≈ 0.90</span> for CO₂ adsorption prediction.
+        </li>
+        <li class="flex gap-3 text-mute text-sm md:text-base leading-relaxed transition-colors duration-300 group-hover:text-paper">
+          <span class="text-signal font-mono mt-1">→</span>
+          Integrated Explainable AI (SHAP) for feature-attribution analysis, improving model transparency for researchers.
+        </li>
+        <li class="flex gap-3 text-mute text-sm md:text-base leading-relaxed transition-colors duration-300 group-hover:text-paper">
+          <span class="text-signal font-mono mt-1">→</span>
+          Deployed an automated design recommendation module for carbon capture optimization.
+        </li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects" class="relative bg-ink px-6 md:px-12 lg:px-20 py-10 md:py-10">
+
+    <!-- Section header -->
+    <div class="reveal mb-14 md:mb-20">
+      <p class="font-mono text-signal text-xs md:text-sm tracking-[0.3em] uppercase mb-4">
+      </p>
+      <h2 class="font-display font-medium leading-[1.05] tracking-tight text-[10vw] md:text-[5.5vw] lg:text-[4.5vw] max-w-4xl">
+        Projects &amp; Builds
+      </h2>
+    </div>
+
+    <!-- Project grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+
+      <!-- Project 1: AERO-TITAN -->
+      <article class="reveal group relative rounded-2xl overflow-hidden border border-line bg-panel">
+        <div class="relative h-64 md:h-80 overflow-hidden">
+  <img
+    src="assets/aerotitan.png"
+    alt="AERO-TITAN Virtual Drone Simulator"
+    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+  />
+  <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent"></div>
+</div>
+        <div class="p-6 md:p-8">
+          <div class="flex items-start justify-between gap-4 mb-3">
+            <h3 class="font-display text-2xl md:text-3xl font-medium">
+              Virtual Drone Simulator <span class="text-signal">— AERO-TITAN</span>
+            </h3>
+            <a href="https://github.com/pronitdxd/virtual-drone-simulator" target="_blank" rel="noopener"
+               class="flex-shrink-0 mt-2 font-mono text-xs uppercase tracking-wider text-signal border border-signal/40 rounded-full px-3 py-1.5 transition-colors hover:bg-signal hover:text-ink">
+              Repo ↗
+            </a>
+          </div>
+          <p class="text-mute text-sm md:text-base leading-relaxed mb-5">
+            A 3D drone simulator with physics-based flight (velocity, acceleration, damping) in
+            procedurally generated environments. Gesture-controlled via MediaPipe + OpenCV hand
+            tracking, running smoothly at 60 FPS with a live HUD for altitude and speed.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">Python</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">Ursina Engine</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">OpenCV</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">MediaPipe</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2: SentinelScope -->
+      <article class="reveal group relative rounded-2xl overflow-hidden border border-line bg-panel">
+        <div class="relative h-64 md:h-80 overflow-hidden">
+  <img
+    src="assets/sentinelscope.png"
+    alt="SentinelScope Permission Abuse Demo App"
+    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+  />
+  <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent"></div>
+</div>
+        <div class="p-6 md:p-8">
+          <div class="flex items-start justify-between gap-4 mb-3">
+            <h3 class="font-display text-2xl md:text-3xl font-medium">
+              SentinelScope <span class="text-signal">— Permission Abuse Demo</span>
+            </h3>
+            <a href="https://github.com/pronitdxd/sentinelscope" target="_blank" rel="noopener"
+               class="flex-shrink-0 mt-2 font-mono text-xs uppercase tracking-wider text-signal border border-signal/40 rounded-full px-3 py-1.5 transition-colors hover:bg-signal hover:text-ink">
+              Repo ↗
+            </a>
+          </div>
+          <p class="text-mute text-sm md:text-base leading-relaxed mb-5">
+            An educational Android app demonstrating over-privileged app behavior and background
+            security vulnerabilities. Built with a Flask backend polling system that triggers remote
+            commands, illustrating real-world permission misuse and user awareness gaps.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">Kotlin</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">Jetpack Compose</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">Flask</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">OkHttp</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3: University Coding & AI Club -->
+      <article class="reveal group relative rounded-2xl overflow-hidden border border-line bg-panel">
+        <div class="relative h-64 md:h-80 overflow-hidden">
+  <img
+    src="assets/codingclub.png"
+    alt="University Coding and AI Club Website"
+    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+  />
+  <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent"></div>
+</div>
+        <div class="p-6 md:p-8">
+          <div class="flex items-start justify-between gap-4 mb-3">
+            <h3 class="font-display text-2xl md:text-3xl font-medium">
+              University Coding &amp; AI Club <span class="text-signal">Website</span>
+            </h3>
+            <div class="flex flex-shrink-0 gap-2 mt-2">
+              <a href="https://my-ai-club.vercel.app" target="_blank" rel="noopener"
+                 class="font-mono text-xs uppercase tracking-wider text-signal border border-signal/40 rounded-full px-3 py-1.5 transition-colors hover:bg-signal hover:text-ink">
+                Live ↗
+              </a>
+            </div>
+          </div>
+          <p class="text-mute text-sm md:text-base leading-relaxed mb-5">
+            A responsive full-stack platform managing club events and member interactions, deployed
+            on Vercel for high scalability and uptime. Includes secure user authentication and a
+            robust database layer for real-time event updates.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">React</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">Node.js</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">Express</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">MongoDB</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 4: Air Drawing -->
+      <article class="reveal group relative rounded-2xl overflow-hidden border border-line bg-panel">
+        <div class="relative h-64 md:h-80 overflow-hidden">
+  <img
+    src="assets/airdrawing.png"
+    alt="Air Drawing Gesture-Based Drawing System"
+    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+  />
+  <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent"></div>
+</div>
+        <div class="p-6 md:p-8">
+          <div class="flex items-start justify-between gap-4 mb-3">
+            <h3 class="font-display text-2xl md:text-3xl font-medium">
+              Air Drawing <span class="text-signal">— Gesture Drawing System</span>
+            </h3>
+            <a href="http://github.com/pronitdxd/air-drawing" target="_blank" rel="noopener"
+               class="flex-shrink-0 mt-2 font-mono text-xs uppercase tracking-wider text-signal border border-signal/40 rounded-full px-3 py-1.5 transition-colors hover:bg-signal hover:text-ink">
+              Repo ↗
+            </a>
+          </div>
+          <p class="text-mute text-sm md:text-base leading-relaxed mb-5">
+            A real-time, touchless human-computer interaction system using MediaPipe hand tracking
+            to render on-screen strokes from finger movements, with frame-smoothing in OpenCV for a
+            jitter-free, fluid drawing experience.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">Python</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">OpenCV</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">MediaPipe</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 5: GUI Calculator -->
+      <article class="reveal group relative rounded-2xl overflow-hidden border border-line bg-panel">
+        <div class="relative h-64 md:h-80 overflow-hidden">
+  <img
+    src="assets/guicalculator.png"
+    alt="GUI Calculator Desktop App"
+    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+  />
+  <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent"></div>
+</div>
+        <div class="p-6 md:p-8">
+          <div class="flex items-start justify-between gap-4 mb-3">
+            <h3 class="font-display text-2xl md:text-3xl font-medium">
+              GUI Calculator <span class="text-signal">— Interactive Desktop Calculator</span>
+            </h3>
+            <a href="https://github.com/pronitdxd/GUI-Calculator" target="_blank" rel="noopener"
+               class="flex-shrink-0 mt-2 font-mono text-xs uppercase tracking-wider text-signal border border-signal/40 rounded-full px-3 py-1.5 transition-colors hover:bg-signal hover:text-ink">
+              Repo ↗
+            </a>
+          </div>
+          <p class="text-mute text-sm md:text-base leading-relaxed mb-5">
+            Built a responsive desktop calculator application in C++ using VCL, implementing
+            event-driven programming and object-oriented design principles to deliver an
+            intuitive user experience.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">C++</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">GUI Development</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">Desktop Applications</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">OOP</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">Event-Driven Programming</span>
+            <span class="font-mono text-xs uppercase tracking-wider border border-line rounded-full px-3 py-1.5 text-mute">Software Development</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="relative bg-ink px-6 md:px-12 lg:px-20 py-24 md:py-36 border-t border-line">
+
+    <div class="reveal mb-12 md:mb-16">
+      <h2 class="font-display font-medium leading-[1.05] tracking-tight text-[11vw] md:text-[6vw] lg:text-[5vw]">
+        Let's build
+        <span class="text-signal">something.</span>
+      </h2>
+      <p class="mt-6 max-w-xl text-mute text-base md:text-lg leading-relaxed">
+        Have a project, opportunity, or just want to talk security and AI? Drop a message —
+        it lands straight in my inbox.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+      <!-- Direct details -->
+      <div class="reveal flex flex-col gap-8">
+        <div>
+          <p class="font-mono text-xs uppercase tracking-[0.2em] text-mute mb-2">Email</p>
+          <a href="mailto:pronitd07@gmail.com" class="font-display text-2xl md:text-3xl hover:text-signal transition-colors break-all">
+            pronitd07@gmail.com
+          </a>
+        </div>
+        <div>
+          <p class="font-mono text-xs uppercase tracking-[0.2em] text-mute mb-2">Based In</p>
+          <p class="font-display text-2xl md:text-xl">
+            Dharwad, Karnataka
+          </p>
+          <p class="font-display text-2xl md:text-xl">
+            Kolkata, West Bengal
+          </p>
+        </div>
+        <div>
+          <p class="font-mono text-xs uppercase tracking-[0.2em] text-mute mb-4">Connect</p>
+          <div class="flex items-center gap-4">
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/pronit-das-80a542306" target="_blank" rel="noopener" aria-label="LinkedIn"
+               class="flex items-center justify-center w-12 h-12 rounded-full border border-line text-paper transition-all duration-300 hover:border-signal hover:text-signal hover:-translate-y-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.114 20.452H3.558V9h3.556v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/pronitxd?igsh=MXE4bHQ0dDR3OHRmeA==" target="_blank" rel="noopener" aria-label="Instagram"
+               class="flex items-center justify-center w-12 h-12 rounded-full border border-line text-paper transition-all duration-300 hover:border-signal hover:text-signal hover:-translate-y-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+              </svg>
+            </a>
+            <!-- GitHub -->
+            <a href="https://github.com/pronitdxd" target="_blank" rel="noopener" aria-label="GitHub"
+               class="flex items-center justify-center w-12 h-12 rounded-full border border-line text-paper transition-all duration-300 hover:border-signal hover:text-signal hover:-translate-y-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.113.793-.26.793-.577 0-.285-.01-1.04-.016-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.51 11.51 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.292-1.552 3.298-1.23 3.298-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.61-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact form -->
+      <form
+        id="contact-form"
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        class="reveal flex flex-col gap-6"
+      >
+        <input type="hidden" name="access_key" value="577b77df-5ec8-4e50-aa8c-62f2542d92df" />
+        <input type="hidden" name="subject" value="New message from your portfolio site" />
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+
+        <div>
+          <label for="name" class="block font-mono text-xs uppercase tracking-[0.2em] text-mute mb-3">Name</label>
+          <input
+            type="text" id="name" name="name" required
+            class="w-full bg-transparent border-b border-line focus:border-signal outline-none py-3 text-lg font-light transition-colors placeholder:text-mute/40"
+            placeholder="Your name"
+          />
+        </div>
+        <div>
+          <label for="email" class="block font-mono text-xs uppercase tracking-[0.2em] text-mute mb-3">Email</label>
+          <input
+            type="email" id="email" name="email" required
+            class="w-full bg-transparent border-b border-line focus:border-signal outline-none py-3 text-lg font-light transition-colors placeholder:text-mute/40"
+            placeholder="you@example.com"
+          />
+        </div>
+        <div>
+          <label for="message" class="block font-mono text-xs uppercase tracking-[0.2em] text-mute mb-3">Message</label>
+          <textarea
+            id="message" name="message" required rows="4"
+            class="w-full bg-transparent border-b border-line focus:border-signal outline-none py-3 text-lg font-light transition-colors resize-none placeholder:text-mute/40"
+            placeholder="Tell me about your project, role, or idea..."
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="group mt-2 inline-flex items-center justify-center gap-3 bg-signal text-ink font-mono text-sm uppercase tracking-wider px-7 py-4 rounded-full transition-all duration-300 hover:bg-paper hover:gap-5 w-fit"
+        >
+          Send Message
+          <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </button>
+
+        <!-- Status message -->
+        <p id="form-status" class="font-mono text-xs uppercase tracking-wider hidden"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="relative bg-ink px-6 md:px-12 lg:px-20 py-10 border-t border-line flex flex-col md:flex-row items-center justify-between gap-4 text-mute font-mono text-xs uppercase tracking-wider">
+    <p>© All rights reserved.</p>
+    <div class="flex gap-6">
+      <a href="https://linkedin.com/in/pronit-das-80a542306" target="_blank" rel="noopener" class="hover:text-signal transition-colors">LinkedIn</a>
+      <a href="mailto:pronitd07@gmail.com" class="hover:text-signal transition-colors">Email</a>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
